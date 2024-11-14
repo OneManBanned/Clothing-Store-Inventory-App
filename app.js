@@ -1,22 +1,25 @@
-import express, { urlencoded } from "express"
+import express, { urlencoded } from "express";
 import { fileURLToPath } from "url";
 import path, { dirname } from "path";
-import {messageController} from "./controllers/messageController.js"
+import indexRouter from "./routes/indexRouter.js";
+import categoryRouter from "./routes/categoryRouter.js";
+import itemRouter from "./routes/itemRouter.js";
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
-const PORT = process.env.PORT | 3000
-app.use(urlencoded({ extended: false }))
+const PORT = process.env.PORT | 3000;
+app.use(urlencoded({ extended: false }));
 
-app.set("views", path.join(__dirname, "views"))
-app.set("view engine", "ejs")
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
-app.get("/", async function(req, res) {
-    const { rows } = await messageController();
-    const { message } = rows[0]
-    res.render("index", { message: message })
-})
+app.use("/", indexRouter);
+app.use("/categories", categoryRouter);
+app.use("/items", itemRouter);
+app.use((req, res) => {
+  res.status(404).render("404");
+});
 
-app.listen(PORT, () => console.log(`listening on http://localhost:${PORT}...`))
+app.listen(PORT, () => console.log(`listening on http://localhost:${PORT}...`));
