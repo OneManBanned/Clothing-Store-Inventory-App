@@ -1,0 +1,13 @@
+ul {
+    display: flex;
+}
+
+li {
+    margin-left: 1rem;
+    list-style: none;
+}
+
+span {
+    color: purple
+}
+
