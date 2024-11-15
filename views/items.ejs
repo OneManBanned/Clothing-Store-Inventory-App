@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cen">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,5 +9,9 @@
     <body>
         <%- include('header'); -%>
 
+        <h1>Items</h1>
+        <% items.forEach(function(item) { %>
+        <p>name: <span><%- item.name %></span> size: <span><%- item.size %></span> category: <span><%- item.type %></span> price: <span><%- item.price %></span></p>
+        <% }); %>
     </body>
 </html>

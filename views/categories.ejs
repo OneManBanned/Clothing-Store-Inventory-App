@@ -8,6 +8,10 @@
     </head>
     <body>
         <%- include('header'); -%>
-
+        <h1>Categories</h1>
+        <% categories.forEach(function(category) { %>
+        <p><%- category.type %></p>
+        <% }); %>
     </body>
 </html>
+
