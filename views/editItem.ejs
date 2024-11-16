@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+    <main>
+ <form action="updateItem/<%= item_id %>" method="POST">
+ <%- console.log("id: ", item_id) %>
+            <div>
+            <label for="name">Name: </label>
+            <input type="text" name="name" id="name" value="<%= name %>" required>
+            </div>
+            <div>
+            <label for="color">Color: </label>
+            <input type="text" name="color" id="color" value="<%= color %>" required>
+            </div>
+            <div>
+            <label for="size">Size: </label>
+            <input type="number" name="size" id="size" value="<%= size %>" required>
+            </div>
+            <div>
+            <label for="price">Price: </label>
+            <input type="number" step="0.01" name="price" id="price" value="<%= price %>" required>
+            </div>
+            <div>
+            <label for="category-select">Category: </label>
+                <select name="category" id="category-select" required>
+                    <% categories.forEach(function(category) { %>
+                    <option 
+                    value=<%= category.category_id %>
+                    <% if (category.type == type) { %>
+                    <%% selected 
+                    <% } %>
+                    >
+                    <%= category.type %>
+                    </option> 
+                   <% }); %>
+                </select>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        </main>
+    </body>
+</html>

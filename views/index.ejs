@@ -10,7 +10,6 @@
         <%- include('header'); -%>
 
         <% if (locals.errors) { %>
-        <%- console.log(errors) %>
         <% errors.forEach(function(err) { %>
         <p><%= err.msg %></p>
         <% }); %>

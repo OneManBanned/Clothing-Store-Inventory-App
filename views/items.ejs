@@ -12,9 +12,11 @@
         <main>
             
         <h1>Items</h1>
+        <% if(items) { %>
         <% items.forEach(function(item) { %>
-        <p>name: <span><%= item.name %></span> size: <span><%= item.size %></span> category: <span><%= item.type %></span> price: <span><%= item.price %></span></p>
+        <p>name: <span><%= item.name %></span> size: <span><%= item.size %></span> category: <span><%= item.type %></span> price: <span><%= item.price %></span> - <a href="items/<%= item.item_id %>">edit</a></p>
         <% }); %>
+        <% } %>
         <h2>Add an item</h2>
         <form action="items" method="POST">
             <div>
@@ -38,7 +40,7 @@
                 <select name="category" id="category-select" required>
                     <option value="">--Please choose an option</option> 
                     <% categories.forEach(function(category) { %>
-                    <option value=<%= category.id %>><%= category.type %></option> 
+                    <option value=<%= category.category_id %>><%= category.type %></option> 
                    <% }); %>
                 </select>
             </div>
