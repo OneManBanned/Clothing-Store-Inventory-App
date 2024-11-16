@@ -21,7 +21,6 @@ export const postItems = [
         const { name, color, size, price, category } = req.body;
 
         const errors = validationResult(req);
-        console.log(name, " ", color, " ", size, " ", price, " ", category);
 
         if (!errors.isEmpty()) {
             res.status(400).render("index", { errors: errors.array() });

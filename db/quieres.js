@@ -13,3 +13,7 @@ export const queryCategory = async () => {
 export const queryCreateItem = async(name, color, size, price, category) => {
     await pool.query('INSERT INTO item (name, color, size, price, type) VALUES ($1, $2, $3, $4, $5)', [name, color, size, price, category])
 }
+
+export const queryCreateCategory = async(type) => {
+    await pool.query('INSERT INTO category (type) VALUES ($1)', [type])
+}

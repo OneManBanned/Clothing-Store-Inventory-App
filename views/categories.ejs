@@ -12,6 +12,15 @@
         <% categories.forEach(function(category) { %>
         <p><%- category.type %></p>
         <% }); %>
+        <form action="categories" method="POST">
+            <ul>
+           <div>
+            <label for="type">Type: </label>
+            <input type="text" name="type" id="type">
+            <button type="submit">Submit</button>
+           </div> 
+            </ul>
+        </form>
     </body>
 </html>
 
