@@ -9,9 +9,41 @@
     <body>
         <%- include('header'); -%>
 
+        <main>
+            
         <h1>Items</h1>
         <% items.forEach(function(item) { %>
-        <p>name: <span><%- item.name %></span> size: <span><%- item.size %></span> category: <span><%- item.type %></span> price: <span><%- item.price %></span></p>
+        <p>name: <span><%= item.name %></span> size: <span><%= item.size %></span> category: <span><%= item.type %></span> price: <span><%= item.price %></span></p>
         <% }); %>
+        <h2>Add an item</h2>
+        <form action="items" method="POST">
+            <div>
+            <label for="name">Name: </label>
+            <input type="text" name="name" id="name" required>
+            </div>
+            <div>
+            <label for="color">Color: </label>
+            <input type="text" name="color" id="color" required>
+            </div>
+            <div>
+            <label for="size">Size: </label>
+            <input type="number" name="size" id="size" required>
+            </div>
+            <div>
+            <label for="price">Price: </label>
+            <input type="number" step="0.01" name="price" id="price" required>
+            </div>
+            <div>
+            <label for="category-select">Category: </label>
+                <select name="category" id="category-select" required>
+                    <option value="">--Please choose an option</option> 
+                    <% categories.forEach(function(category) { %>
+                    <option value=<%= category.id %>><%= category.type %></option> 
+                   <% }); %>
+                </select>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        </main>
     </body>
 </html>
