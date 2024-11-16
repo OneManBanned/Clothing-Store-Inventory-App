@@ -14,7 +14,11 @@
         <h1>Items</h1>
         <% if(items) { %>
         <% items.forEach(function(item) { %>
-        <p>name: <span><%= item.name %></span> size: <span><%= item.size %></span> category: <span><%= item.type %></span> price: <span><%= item.price %></span> - <a href="items/<%= item.item_id %>">edit</a></p>
+        <p>name: <span><%= item.name %></span> color: <span><%= item.color %></span> size: <span><%= item.size %></span> category: <span><%= item.type %></span> price: <span><%= item.price %></span> - <a href="items/<%= item.item_id %>">edit</a>
+        <form action="items/delete/<%= item.item_id %>" method="POST" >
+           <button type="submit">DELETE</button> 
+        </form>
+        </p>
         <% }); %>
         <% } %>
         <h2>Add an item</h2>

@@ -20,6 +20,9 @@ export const queryPostUpdateItem = async( item_id, name, color, size, price, cat
     await pool.query('UPDATE item SET name = ($2), color = ($3), size = ($4), price = ($5), type_id = ($6) WHERE item_id = ($1);', [ item_id, name, color, size, price, cateogry ])
 }
 
+export const queryDeleteItem = async(item_id) => {
+    await pool.query('DELETE FROM item WHERE item_id = ($1)', [item_id])
+}
 //category quieres
 
 export const queryCategory = async () => {
@@ -28,5 +31,5 @@ export const queryCategory = async () => {
 }
 
 export const queryCreateCategory = async(type) => {
-    await pool.query('INSERT INTO category (type_id) VALUES ($1)', [type])
+    await pool.query('INSERT INTO category (type) VALUES ($1)', [type])
 }
