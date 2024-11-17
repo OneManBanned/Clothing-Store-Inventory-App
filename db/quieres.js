@@ -25,11 +25,20 @@ export const queryDeleteItem = async(item_id) => {
 }
 //category quieres
 
-export const queryCategory = async () => {
+export const queryCategories = async () => {
     const categories = await pool.query('SELECT * FROM category')
     return categories;
 }
 
 export const queryCreateCategory = async(type) => {
     await pool.query('INSERT INTO category (type) VALUES ($1)', [type])
+}
+
+export const queryCategory = async(id) => {
+    const category = await pool.query('SELECT * FROM category WHERE category_id = ($1)', [id])
+    return category
+}
+
+export const queryPostUpdateCategory = async(type, id) => {
+    await pool.query('UPDATE category SET type = ($1) WHERE category_id = ($2)', [type, id])
 }

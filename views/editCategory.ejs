@@ -7,20 +7,15 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-        <%- include('header'); -%>
-        <h1>Categories</h1>
-        <% categories.forEach(function(category) { %>
-        <p><%- category.type %><a href="/categories/<%= category.category_id %>"> - Edit</a></p>
-        <% }); %>
-        <form action="categories" method="POST">
+        <form action="editCategory/<%= category_id %>" method="POST">
             <ul>
            <div>
             <label for="type">Type: </label>
-            <input type="text" name="type" id="type">
+            <input type="text" name="type" id="type" value="<%= type %>">
             <button type="submit">Submit</button>
            </div> 
             </ul>
         </form>
+   
     </body>
 </html>
-

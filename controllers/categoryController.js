@@ -1,4 +1,4 @@
-import { queryCategory, queryCreateCategory} from "../db/quieres.js";
+import { queryPostUpdateCategory, queryCategories, queryCategory, queryCreateCategory } from "../db/quieres.js";
 import { body, validationResult } from "express-validator";
 
 const validateCategory = [
@@ -11,7 +11,7 @@ const validateCategory = [
 ];
 
 export async function getCategories(req, res) {
-    const { rows: categories } = await queryCategory();
+    const { rows: categories } = await queryCategories();
     res.render("categories", { categories: categories });
 }
 
@@ -25,8 +25,23 @@ export const postCategories = [
         if (!errors.isEmpty()) {
             res.status(400).render("index", { errors: errors.array() });
         } else {
-            await queryCreateCategory(type)
+            await queryCreateCategory(type);
             res.redirect("/");
         }
     },
 ];
+
+export async function getEditCategory(req, res) {
+    const { id } = req.params;
+    const { rows: category} = await queryCategory(id)
+    const { type, category_id } = category[0]
+    res.render("editCategory", {type: type, category_id: category_id});
+}
+
+export async function postUpdateCategory(req, res) {
+    const { id: category_id } = req.params
+    const { type } = req.body
+    await queryPostUpdateCategory(type, category_id)
+
+    res.redirect("/categories")
+}
