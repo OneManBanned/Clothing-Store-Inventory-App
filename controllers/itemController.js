@@ -3,7 +3,7 @@ import {
     queryPostUpdateItem,
     queryCreateItem,
     queryItem,
-    queryCategory,
+    queryCategories,
     queryItems,
 } from "../db/quieres.js";
 
@@ -31,7 +31,7 @@ const validateBody = [
 
 export async function getItems(req, res) {
     const { rows: items } = await queryItems();
-    const { rows: categories } = await queryCategory();
+    const { rows: categories } = await queryCategories();
     res.render("items", { items: items, categories: categories });
 }
 
@@ -54,7 +54,7 @@ export const postItems = [
 export async function updateItem(req, res) {
     const { id } = req.params;
     const { rows: item } = await queryItem(id);
-    const { rows: categories } = await queryCategory();
+    const { rows: categories } = await queryCategories();
     const { name, color, size, price, type, item_id } = item[0];
     res.render("editItem", {
         name: name,
@@ -84,7 +84,6 @@ export const postUpdateItem = [
 ];
 
 export async function deleteItem(req, res) {
-    console.log("HELLOE!!!", req.params);
     const { id: item_id } = req.params;
     await queryDeleteItem(item_id)
     res.redirect("/items")
