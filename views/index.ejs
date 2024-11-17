@@ -7,6 +7,8 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
+        <main>
+            
         <%- include('header'); -%>
 
         <% if (locals.errors) { %>
@@ -14,5 +16,7 @@
         <p><%= err.msg %></p>
         <% }); %>
         <% } %>
+
+        </main>
     </body>
 </html>

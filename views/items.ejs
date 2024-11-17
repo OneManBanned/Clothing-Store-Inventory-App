@@ -7,14 +7,14 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-        <%- include('header'); -%>
 
         <main>
+            <%- include('header'); -%>
             
         <h1>Items</h1>
         <% if(items) { %>
         <% items.forEach(function(item) { %>
-        <p>name: <span><%= item.name %></span> color: <span><%= item.color %></span> size: <span><%= item.size %></span> category: <span><%= item.type %></span> price: <span><%= item.price %></span> - <a href="items/<%= item.item_id %>">edit</a>
+        <p>name: <span><%= item.name %></span> color: <span><%= item.color %></span> size: <span><%= item.size %></span> category: <span><%= item.type %></span> price: <span><%= item.price %></span><a href="items/<%= item.item_id %>">EDIT</a>
         <form action="items/delete/<%= item.item_id %>" method="POST" >
            <button type="submit">DELETE</button> 
         </form>
