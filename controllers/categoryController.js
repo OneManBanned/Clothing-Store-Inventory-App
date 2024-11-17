@@ -38,7 +38,7 @@ export async function getEditCategory(req, res) {
     res.render("editCategory", {type: type, category_id: category_id});
 }
 
-export async function postUpdateCategory(req, res) {
+export const postUpdateCategory = [validateCategory, async(req, res) => {
     const { id: category_id } = req.params
     const { type } = req.body
     await queryPostUpdateCategory(type, category_id)
