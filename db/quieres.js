@@ -42,3 +42,7 @@ export const queryCategory = async(id) => {
 export const queryPostUpdateCategory = async(type, id) => {
     await pool.query('UPDATE category SET type = ($1) WHERE category_id = ($2)', [type, id])
 }
+
+export const queryDeleteCategory = async(id) => {
+    await pool.query('DELETE FROM category WHERE category_id = ($1)', [id])
+}

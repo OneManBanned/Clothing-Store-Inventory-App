@@ -10,7 +10,11 @@
         <%- include('header'); -%>
         <h1>Categories</h1>
         <% categories.forEach(function(category) { %>
-        <p><%- category.type %><a href="/categories/<%= category.category_id %>"> - Edit</a></p>
+        <p><%- category.type %><a href="/categories/<%= category.category_id %>"> - Edit</a>
+        <form action="categories/deleteCategory/<%= category.category_id %>" method="POST">
+            <button type="submit">DELETE</button>
+        </form>
+        </p>
         <% }); %>
         <form action="categories" method="POST">
             <ul>

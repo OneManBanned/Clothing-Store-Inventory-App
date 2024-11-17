@@ -1,4 +1,4 @@
-import { queryPostUpdateCategory, queryCategories, queryCategory, queryCreateCategory } from "../db/quieres.js";
+import { queryDeleteCategory, queryPostUpdateCategory, queryCategories, queryCategory, queryCreateCategory } from "../db/quieres.js";
 import { body, validationResult } from "express-validator";
 
 const validateCategory = [
@@ -43,5 +43,13 @@ export const postUpdateCategory = [validateCategory, async(req, res) => {
     const { type } = req.body
     await queryPostUpdateCategory(type, category_id)
 
+    res.redirect("/categories")
+}
+]
+
+export async function postDeleteCategory(req, res) {
+    const { id: category_id } = req.params
+    console.log(category_id)
+    await queryDeleteCategory(category_id)
     res.redirect("/categories")
 }
