@@ -7,7 +7,7 @@ import {
     queryItems,
 } from "../db/quieres.js";
 
-import { body, validationResult } from "express-validator";
+import { body, param, validationResult } from "express-validator";
 
 const validateBody = [
     body("name")
@@ -28,6 +28,11 @@ const validateBody = [
     body("price").trim().isDecimal().withMessage("price is meant to be decimal"),
     body("category").notEmpty().withMessage("enter a category"),
 ];
+
+const validateParams = [
+    param("id")
+        .isInt()
+]
 
 export async function getItems(req, res) {
     const { rows: items } = await queryItems();
@@ -51,11 +56,19 @@ export const postItems = [
     },
 ];
 
-export async function updateItem(req, res) {
+export const updateItem = [validateParams, async (req, res) => {
     const { id } = req.params;
-    const { rows: item } = await queryItem(id);
-    const { rows: categories } = await queryCategories();
-    const { name, color, size, price, type, item_id } = item[0];
+
+    const errors = validationResult(req)
+
+    if (!errors.isEmpty()) {
+        res.redirect("/404")
+    } else {
+
+        const { rows: item } = await queryItem(id);
+        const { rows: categories } = await queryCategories();
+        const { name, color, size, price, type, item_id } = item[0];
+
     res.render("editItem", {
         name: name,
         color: color,
@@ -65,7 +78,9 @@ export async function updateItem(req, res) {
         categories: categories,
         item_id: item_id,
     });
+    }
 }
+]
 
 export const postUpdateItem = [
     validateBody,

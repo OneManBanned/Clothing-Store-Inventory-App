@@ -1,7 +1,9 @@
-import { Router } from "express";
+import express, { Router } from "express";
 import { getCategories, getEditCategory, postDeleteCategory, postUpdateCategory, postCategories } from "../controllers/categoryController.js";
+import { __dirname } from "../app.js";
 
 const categoryRouter = Router();
+categoryRouter.use(express.static('../public'))
 
 categoryRouter.get("/", getCategories)
 categoryRouter.get("/:id", getEditCategory)
